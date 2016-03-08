@@ -46,7 +46,7 @@ namespace ExtractIP
                 }
             }
 
-            // 배열을 복사한다.
+            // 중복되지 않는 IP들을 구한다.
             singleIps = ipValues.Distinct().ToList();
 
             // 배열의 개수만큼 반복한다.
