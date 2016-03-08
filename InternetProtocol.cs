@@ -52,8 +52,9 @@ namespace ExtractIP
             // 배열의 개수만큼 반복한다.
             for (int i = 0; i < singleIps.Count; i++)
             {
-                // 배열의 첫 번째 값과 같은 IP의 개수를 센다.
+                // IP에 대한 데이터들을 구한다.
                 ipDatas.Add(singleIps[i]);
+                // 배열의 첫 번째 값과 같은 IP의 개수를 센다.
                 for(int j = 0; j < ipValues.Count; j++)
                 {
                     if(ipValues[j].Equals(singleIps[i]))
