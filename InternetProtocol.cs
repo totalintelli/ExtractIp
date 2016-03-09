@@ -91,7 +91,7 @@ namespace ExtractIP
                 // 자기 자신의 개수로 하나를 더한다.
                 sameCount++;
                 // 중복 개수를 추가한다.
-                ipDatas.Add(sameCount.ToString());
+                ipDatas.Add(sameCount.ToString() + "개");
                 // 중복 개수를 초기화한다.
                 sameCount = 0;
             }
@@ -123,14 +123,7 @@ namespace ExtractIP
         {
             for (int i = 0; i < ipDatas.Count; i++)
             {
-                if (i % 2 == 0)
-                {
-                    Console.Write("{0}", ipDatas[i]);
-                }
-                else
-                {
-                    Console.Write(" {0}개\n", ipDatas[i]);
-                }
+              Console.WriteLine("{0}", ipDatas[i]);
             }
 
             Console.ReadKey();
