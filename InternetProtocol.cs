@@ -123,7 +123,7 @@ namespace ExtractIP
         {
             for (int i = 0; i < ipDatas.Count; i++)
             {
-              Console.WriteLine("{0}", ipDatas[i]);
+              Console.Write("{0} ", ipDatas[i]);
             }
 
             Console.ReadKey();
