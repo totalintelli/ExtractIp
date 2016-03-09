@@ -22,7 +22,6 @@ namespace ExtractIP
             string[] lines;
             List<string> ipDatas;
 
-
             lines = ip.Load();
             ip.ExtractIp(lines, out ipDatas);
             ip.Output(ipDatas);
@@ -39,11 +38,13 @@ namespace ExtractIP
          void ExtractIp(string[] lines, out List<string> ipDatas)
         {
             string pattern = @"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}";
-            List<string> ipValues = new List<string>(); // 추출한 IP들
+            List<string> tmpIpValues = new List<string>(); // IP 형식에 맞는 IP들
+            List<string> ipValues = new List<string>(); // IP 값들
             int dataCount = 0; // 글자형에 맞는 IP의 개수
             int sameCount = 0; // 같은 IP의 개수
-            List<string> singleIps = new List<string>(); // 중복되지 않는 IP들
+            List<string> singleIps = new List<string>(); // IP 목록
             ipDatas = new List<string>(); // IP에 대한 데이터들 - 짝수행 : IP 값, 홀수행 : 중복된 IP의 개수
+            int k = 0; // IP 형식에 맞는 IP들에서의 위치
 
             foreach (string line in lines)
             {
@@ -51,12 +52,7 @@ namespace ExtractIP
 
                 while (m.Success)
                 {
-                    ipValues.Add(m.Value);
-
-                    if (dataCount % 2 > 0)
-                    {
-                        ipValues.Remove(m.Value);
-                    }
+                    tmpIpValues.Add(m.Value);
 
                     dataCount++;
 
@@ -64,8 +60,19 @@ namespace ExtractIP
 
                 }
             }
+                        
+            while(k < tmpIpValues.Count)
+            {
+                if(k % 2 == 0)
+                {
+                    ipValues.Add(tmpIpValues[k]);
+                }
 
-            // 중복되지 않는 IP들을 구한다.
+                k++;
+            }
+
+
+            // IP 목록을 구한다.
             singleIps = ipValues.Distinct().ToList();
 
             // 배열의 개수만큼 반복한다.
